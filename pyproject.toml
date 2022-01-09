@@ -1,0 +1,72 @@
+[tool.poetry]
+name = "test_app"
+version = "0.1"
+description = "Recreation of channels + django asgiref 3.4.1 issue"
+
+classifiers = [
+  'Development Status :: 5 - Production/Stable',
+  'Environment :: Web Environment',
+  'Framework :: Django',
+  'Framework :: Django :: 2.2',
+  'Framework :: Django :: 3.1',
+  'Framework :: Django :: 3.2',
+  'Intended Audience :: Developers',
+  'License :: OSI Approved :: MIT License',
+  'Operating System :: OS Independent',
+  'Programming Language :: Python',
+  'Programming Language :: Python :: 3',
+  'Programming Language :: Python :: 3.7',
+  'Programming Language :: Python :: 3.8',
+  'Programming Language :: Python :: 3.9',
+  'Programming Language :: Python :: 3.10',
+  'Programming Language :: Python :: Implementation :: CPython',
+  'Programming Language :: Python :: Implementation :: PyPy',
+  'Topic :: Utilities'
+]
+
+license = "MIT"
+
+authors = [
+    "Tony Narlock <tony@git-pull.com>"
+]
+
+readme = 'README.md'
+packages = [
+    { include = "test_app" }
+]
+
+
+[tool.poetry.dependencies]
+python = "^3.7"
+django-extensions = {version="*", optional = true}
+Django = ">=2.2"
+
+[tool.poetry.dev-dependencies]
+
+### Testing ###
+pytest = "*"
+pytest-rerunfailures = "*"
+pytest-django = "*"
+tox = {version = "^3.24.5", extras = ["test"]}
+django-extensions = "*"
+tox-poetry-installer = {extras = ["poetry"], version = "^0.8.3"}
+
+### Format ###
+black = "==21.12b0"
+isort = "*"
+
+### Lint ###
+flake8 = "*"
+
+[tool.poetry.extras]
+test = ["pytest", "pytest-rerunfailures", "pytest-django", "django-extensions", "tox-poetry-installer"]
+format = ["black", "isort"]
+lint = ["flake8"]
+
+[tool.black]
+skip-string-normalization = true
+include = '\.pyi?$'
+
+[build-system]
+requires = ["poetry_core>=1.0.0", "poetry>=1.1.12"]
+build-backend = "poetry.core.masonry.api"
