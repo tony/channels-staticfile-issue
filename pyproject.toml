@@ -40,6 +40,22 @@ packages = [
 python = "^3.7"
 django-extensions = {version="*", optional = true}
 Django = ">=2.2"
+channels = "*"
+
+### asgiref ###
+asgiref = "*"
+
+### Gunicorn ###
+gunicorn = "^20.1.0"
+
+### uvicorn ###
+uvicorn = "^0.16.0"
+
+### daphne ###
+daphne = "^3.0.2"
+
+### whitenoise ###
+whitenoise = "^5.3.0"
 
 [tool.poetry.dev-dependencies]
 
@@ -62,6 +78,11 @@ flake8 = "*"
 test = ["pytest", "pytest-rerunfailures", "pytest-django", "django-extensions", "tox-poetry-installer"]
 format = ["black", "isort"]
 lint = ["flake8"]
+daphne = ["daphne"]
+gunicorn = ["gunicorn"]
+uvicorn = ["uvicorn"]
+asgiref = ["asgiref"]
+whitenoise = ["whitenoise"]
 
 [tool.black]
 skip-string-normalization = true
