@@ -1,4 +1,4 @@
-name: tests
+name: ci
 
 on: [push, pull_request]
 
@@ -67,7 +67,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        poetry install -E "docs test coverage lint format"
+        poetry install -E "test lint"
         poetry run pip install DJANGO~=${{ matrix.django-version }}
 
     - name: Install django-extensions @ version, if exists
