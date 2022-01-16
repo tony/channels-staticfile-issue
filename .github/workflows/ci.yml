@@ -36,7 +36,7 @@ jobs:
       run: echo ::set-output name=version::$(python -c "import sys; print('-'.join(str(v) for v in sys.version_info))")
 
     - name: Set image name as output
-      id: image-name
+      id: docker-info
       shell: bash
       run: |
         echo ::set-output name=IMAGE_NAME::${IMAGE_NAME}
