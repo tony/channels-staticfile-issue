@@ -33,6 +33,7 @@ ENV PATH=$PATH:${POETRY_HOME}/bin \
     --workers $GUNICORN_WORKERS \
     --worker-class=uvicorn.workers.UvicornWorker \
     --error-logfile - \
+    --access-logfile - \
     --timeout $GUNICORN_TIMEOUT"
 
 ARG BUILD_ENV
