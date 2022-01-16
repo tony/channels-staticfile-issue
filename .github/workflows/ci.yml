@@ -96,7 +96,7 @@ jobs:
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         build-args: |
-          PY_VERSION: ${{ matrix.python-version }}
-          ASGIREF_VERSION: ${{ matrix.asgi-version }}
-          DJANGO_VERSION: ${{ matrix.django-version }}
-          CHANNELS_VERSION: ${{ matrix.channels-version }}
+          PY_VERSION=${{ matrix.python-version }}
+          ASGIREF_VERSION=${{ matrix.asgi-version }}
+          DJANGO_VERSION=${{ matrix.django-version }}
+          CHANNELS_VERSION=${{ matrix.channels-version }}
