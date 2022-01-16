@@ -23,6 +23,10 @@ jobs:
       REGISTRY: ghcr.io
       IMAGE_NAME: ${{ github.repository }}-python-${{ matrix.python-version }}-django-${{ matrix.django-version}}-channels-${{ matrix.channels-version }}-asgiref-${{ matrix.asgiref-version }}
 
+    outputs:
+      REGISTRY: ${{ needs.docker-info.outputs.REGISTRY }}
+      IMAGE_NAME: ${{ needs.docker-info.outputs.IMAGE_NAME }}
+
     steps:
     - uses: actions/checkout@v1
     - name: Set up Python ${{ matrix.python-version }}
@@ -132,7 +136,7 @@ jobs:
 
     services:
       django-server:
-        image: ${{ needs.docker-info.outputs.REGISTRY }}/${{ needs.docker-info.outputs.IMAGE_NAME }}
+        image: ${{ needs.build.outputs.REGISTRY }}/${{ needs.build.outputs.IMAGE_NAME }}
         credentials:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
