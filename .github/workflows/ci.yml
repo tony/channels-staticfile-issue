@@ -144,12 +144,21 @@ jobs:
           - 8999:8999
 
     steps:
+
+      - uses: addnab/docker-run-action@v3
+        with:
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN}}
+          registry: ghcr.io
+          image: ${{ needs.build.outputs.REGISTRY }}/${{ needs.build.outputs.IMAGE_NAME }}:docker
+          options: --detach -v ${{ github.workspace }}:/work -e PORT=8998 -e APPEND_STATICFILES_URLPATTERN=1
       - name: ping
         shell: bash
         run: |
           curl -c 3 localhost:8999
           STATUS=$(curl -I "localhost:8999" 2>&1 | awk '/HTTP\// {print $2}')
           echo $STATUS
+
 
       - name: django-server logs
         run: docker logs "${{ job.services.django-server.id }}"
