@@ -178,7 +178,7 @@ jobs:
           registry: ghcr.io
           image: ${{ needs.build.outputs.REGISTRY }}/${{ needs.build.outputs.IMAGE_NAME }}:docker
           options: >
-            --detach -v ${{ github.workspace }}:/app
+            --detach -v ${{ github.workspace }}:/work
             --network host
             -p 8998:8998
             -e PORT=8998
