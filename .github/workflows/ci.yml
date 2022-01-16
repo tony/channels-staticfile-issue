@@ -136,7 +136,7 @@ jobs:
 
     services:
       django-server:
-        image: ${{ needs.build.outputs.REGISTRY }}/${{ needs.build.outputs.IMAGE_NAME }}
+        image: ${{ needs.build.outputs.REGISTRY }}/${{ needs.build.outputs.IMAGE_NAME }}:docker
         env:
           APPEND_STATICFILES_URLPATTERN: 1
         ports:
