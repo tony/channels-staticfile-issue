@@ -172,6 +172,7 @@ jobs:
           curl -c 3 localhost:8998
           STATUS=$(curl -I "localhost:8998" 2>&1 | awk '/HTTP\// {print $2}')
           echo $STATUS
+        continue-on-error: true
 
       - name: ping 8999
         shell: bash
@@ -179,7 +180,7 @@ jobs:
           curl -c 3 localhost:8999
           STATUS=$(curl -I "localhost:8999" 2>&1 | awk '/HTTP\// {print $2}')
           echo $STATUS
-
+        continue-on-error: true
 
       - name: django-server logs
         run: docker logs "${{ job.services.django-server.id }}"
