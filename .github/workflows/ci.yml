@@ -144,4 +144,7 @@ jobs:
 
     steps:
       - name: ping
-        run: ping http://localhost:8999
+        shell: bash
+        run: |
+          STATUS=$(curl -I "localhost:8999" 2>&1 | awk '/HTTP\// {print $2}')
+          echo $STATUS
