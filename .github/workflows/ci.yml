@@ -137,9 +137,6 @@ jobs:
     services:
       django-server:
         image: ${{ needs.build.outputs.REGISTRY }}/${{ needs.build.outputs.IMAGE_NAME }}
-        credentials:
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
         env:
           APPEND_STATICFILES_URLPATTERN: 1
         ports:
