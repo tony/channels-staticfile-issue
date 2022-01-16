@@ -156,7 +156,11 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN}}
           registry: ghcr.io
           image: ${{ needs.build.outputs.REGISTRY }}/${{ needs.build.outputs.IMAGE_NAME }}:docker
-          options: --detach -v ${{ github.workspace }}:/work -e PORT=8998 -e APPEND_STATICFILES_URLPATTERN=1
+          options: |
+            --detach -v ${{ github.workspace }}:/work
+            -p 8998:8998
+            -e PORT=8998
+            -e APPEND_STATICFILES_URLPATTERN=1
 
       - name: ping 8898
         shell: bash
