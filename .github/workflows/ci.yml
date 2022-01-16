@@ -38,8 +38,8 @@ jobs:
       id: image-name
       shell: bash
       run: |
-        echo ::set-output name=IMAGE_NAME::${{ IMAGE_NAME }}
-        echo ::set-output name=REGISTRY::${{ REGISTRY }}
+        echo ::set-output name=IMAGE_NAME::${IMAGE_NAME}
+        echo ::set-output name=REGISTRY::${REGISTRY}
       env:
         IMAGE_NAME: ${{ env.IMAGE_NAME }}
         REGISTRY: ${{ env.REGISTRY }}
