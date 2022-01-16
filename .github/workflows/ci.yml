@@ -157,7 +157,7 @@ jobs:
           registry: ghcr.io
           image: ${{ needs.build.outputs.REGISTRY }}/${{ needs.build.outputs.IMAGE_NAME }}:docker
           options: >
-            --detach
+            --detach -v ${{ github.workspace }}:/work
             -p 8998:8998
             -e PORT=8998
             -e APPEND_STATICFILES_URLPATTERN=1
