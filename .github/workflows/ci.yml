@@ -163,13 +163,26 @@ jobs:
           options: >
             --detach -v ${{ github.workspace }}:/app
             --network host
+            -p 8997:8997
+            -e PORT=8997
+            -e APPEND_STATICFILES_URLPATTERN=1
+          run: >
+            curl -c 3 localhost:8997
+            STATUS=$(curl -I "localhost:8997" 2>&1 | awk '/HTTP\// {print $2}')
+            echo $STATUS
+
+      - uses: addnab/docker-run-action@v3
+        with:
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN}}
+          registry: ghcr.io
+          image: ${{ needs.build.outputs.REGISTRY }}/${{ needs.build.outputs.IMAGE_NAME }}:docker
+          options: >
+            --detach -v ${{ github.workspace }}:/app
+            --network host
             -p 8998:8998
             -e PORT=8998
             -e APPEND_STATICFILES_URLPATTERN=1
-          run: >
-            curl -c 3 localhost:8998
-            STATUS=$(curl -I "localhost:8998" 2>&1 | awk '/HTTP\// {print $2}')
-            echo $STATUS
 
       - name: ping 8898
         shell: bash
