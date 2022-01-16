@@ -150,3 +150,7 @@ jobs:
           curl -c 3 localhost:8999
           STATUS=$(curl -I "localhost:8999" 2>&1 | awk '/HTTP\// {print $2}')
           echo $STATUS
+
+      - name: django-server logs
+        run: docker logs "${{ job.services.django-server.id }}"
+        if: always()
