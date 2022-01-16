@@ -48,7 +48,7 @@ WORKDIR /work
 RUN curl -sSL https://install.python-poetry.org | env POETRY_VERSION=$POETRY_VERSION python -
 RUN poetry self --version
 
-RUN poetry config virtualenvs.create false
+# RUN poetry config virtualenvs.create false
 
 COPY --chown=test_app pyproject.toml poetry.lock manage.py ./
 COPY --chown=test_app . .
