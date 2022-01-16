@@ -42,6 +42,7 @@ EXPOSE $PORT
 
 RUN useradd test_app
 
+RUN mkdir /app
 WORKDIR /app
 
 RUN curl -sSL https://install.python-poetry.org | env POETRY_VERSION=$POETRY_VERSION python -
