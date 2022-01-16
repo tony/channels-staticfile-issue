@@ -30,6 +30,16 @@ jobs:
       shell: bash
       run: echo ::set-output name=version::$(python -c "import sys; print('-'.join(str(v) for v in sys.version_info))")
 
+    - name: Set image name as output
+      id: image-name
+      shell: bash
+      run: |
+        echo ::set-output name=IMAGE_NAME::${{ IMAGE_NAME }}
+        echo ::set-output name=REGISTRY::${{ REGISTRY }}
+      env:
+        IMAGE_NAME: ${{ env.IMAGE_NAME }}
+        REGISTRY: ${{ env.REGISTRY }}
+
     - name: Install poetry
       run: |
         curl -O -sSL https://install.python-poetry.org/install-poetry.py
