@@ -24,8 +24,8 @@ jobs:
       IMAGE_NAME: ${{ github.repository }}-python-${{ matrix.python-version }}-django-${{ matrix.django-version}}-channels-${{ matrix.channels-version }}-asgiref-${{ matrix.asgiref-version }}
 
     outputs:
-      REGISTRY: ${{ needs.docker-info.outputs.REGISTRY }}
-      IMAGE_NAME: ${{ needs.docker-info.outputs.IMAGE_NAME }}
+      REGISTRY: ${{ steps.docker-info.outputs.REGISTRY }}
+      IMAGE_NAME: ${{ steps.docker-info.outputs.IMAGE_NAME }}
 
     steps:
     - uses: actions/checkout@v1
