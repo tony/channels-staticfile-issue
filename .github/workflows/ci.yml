@@ -161,6 +161,10 @@ jobs:
             -p 8998:8998
             -e PORT=8998
             -e APPEND_STATICFILES_URLPATTERN=1
+          run: >
+            curl -c 3 localhost:8998
+            STATUS=$(curl -I "localhost:8998" 2>&1 | awk '/HTTP\// {print $2}')
+            echo $STATUS
 
       - name: ping 8898
         shell: bash
