@@ -162,6 +162,7 @@ jobs:
           image: ${{ needs.build.outputs.REGISTRY }}/${{ needs.build.outputs.IMAGE_NAME }}:docker
           options: >
             --detach -v ${{ github.workspace }}:/app
+            --network host
             -p 8998:8998
             -e PORT=8998
             -e APPEND_STATICFILES_URLPATTERN=1
