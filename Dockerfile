@@ -53,7 +53,9 @@ RUN poetry config virtualenvs.create false
 COPY --chown=test_app pyproject.toml poetry.lock manage.py ./
 COPY --chown=test_app . .
 
-RUN poetry install --extras 'gunicorn uvicorn daphne whitenoise'
+RUN --mount=type=cache,target=/home/.cache/pypoetry/cache \
+    --mount=type=cache,target=/home/.cache/pypoetry/artifacts \
+    poetry install --extras 'gunicorn uvicorn daphne whitenoise' 
 RUN [ -n "$DJANGO_VERSION" ] && poetry run pip install django==$DJANGO_VERSION || true
 RUN [ -n "$ASGIREF_VERSION" ] && poetry run pip install asgiref==$ASGIREF_VERSION || true
 RUN [ -n "$CHANNELS_VERSION" ] && poetry run pip install channels==$CHANNELS_VERSION || true
