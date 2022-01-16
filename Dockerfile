@@ -21,7 +21,7 @@ ARG USE_WHITENOISE=1
 
 ENV PATH=$PATH:${POETRY_HOME}/bin \
     PYTHONUNBUFFERED=1 \
-    PYTHONPATH=/app \
+    PYTHONPATH=/work \
     DJANGO_SETTINGS_MODULE=test_app.settings \
     PORT=$PORT \
     DEBUG=$DEBUG \
@@ -42,8 +42,8 @@ EXPOSE $PORT
 
 RUN useradd test_app
 
-RUN mkdir /app
-WORKDIR /app
+RUN mkdir /work
+WORKDIR /work
 
 RUN curl -sSL https://install.python-poetry.org | env POETRY_VERSION=$POETRY_VERSION python -
 RUN poetry self --version
